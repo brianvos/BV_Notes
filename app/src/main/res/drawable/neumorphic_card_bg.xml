@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Deeper Dark shadow bottom-right -->
+    <item android:left="6dp" android:top="6dp" android:right="0dp" android:bottom="0dp">
+        <shape>
+            <solid android:color="@color/neu_primary_shadow" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+    <!-- Crisp Light highlight top-left -->
+    <item android:left="0dp" android:top="0dp" android:right="6dp" android:bottom="6dp">
+        <shape>
+            <solid android:color="@color/neu_primary_highlight" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+    <!-- Main surface: Match Dark Academia parchment -->
+    <item android:left="4dp" android:top="4dp" android:right="4dp" android:bottom="4dp">
+        <shape>
+            <solid android:color="@color/bg_card" />
+            <stroke android:width="1.5dp" android:color="@color/accent_brown" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+</layer-list>

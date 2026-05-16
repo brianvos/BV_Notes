@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- item_folder_row.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/folderRow"
+    android:layout_width="match_parent"
+    android:layout_height="42dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="4dp"
+    android:background="@drawable/folder_row_bg"
+    android:clickable="true"
+    android:focusable="true">
+
+    <TextView android:id="@+id/folderEmoji"
+        android:layout_width="24dp" android:layout_height="24dp"
+        android:textSize="16sp" android:gravity="center"/>
+
+    <TextView android:id="@+id/folderName"
+        android:layout_width="0dp" android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="13sp"
+        android:textColor="@color/text_primary"
+        android:fontFamily="serif"
+        android:textStyle="bold"
+        android:layout_marginStart="8dp"
+        android:singleLine="true"
+        android:ellipsize="end"/>
+
+</LinearLayout>

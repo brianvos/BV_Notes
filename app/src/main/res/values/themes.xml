@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.BVNotes" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/accent_brown</item>
+        <item name="colorOnPrimary">@color/bg_primary</item>
+        <item name="colorSurface">@color/bg_card</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="android:windowBackground">@color/bg_primary</item>
+        <item name="android:statusBarColor">@color/bg_toolbar</item>
+        <item name="android:navigationBarColor">@color/bg_toolbar</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">false</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <!-- Toolbar icon buttons -->
+    <style name="ToolbarIconBtn">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@drawable/tool_btn_bg</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:tint">@color/text_on_brown</item>
+        <item name="android:layout_marginHorizontal">2dp</item>
+    </style>
+
+    <!-- Tool palette buttons -->
+    <style name="ToolPaletteBtn">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@drawable/tool_palette_btn_bg</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:tint">@color/text_secondary</item>
+        <item name="android:layout_marginVertical">3dp</item>
+    </style>
+
+    <!-- Bottom bar buttons -->
+    <style name="BottomBarBtn">
+        <item name="android:layout_width">44dp</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:background">@drawable/tool_btn_bg</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:tint">@color/text_secondary</item>
+        <item name="android:layout_marginHorizontal">4dp</item>
+    </style>
+
+    <!-- Selection bar buttons -->
+    <style name="SelectionBarBtn">
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:padding">6dp</item>
+        <item name="android:tint">@color/text_primary</item>
+    </style>
+
+    <!-- Dialogs -->
+    <style name="BVNotesDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="android:background">@color/bg_card</item>
+        <item name="android:navigationBarColor">@color/bg_toolbar</item>
+    </style>
+
+    <!-- Bottom Sheet -->
+    <style name="BVNotesBottomSheet" parent="Theme.Material3.DayNight.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:navigationBarColor">@color/bg_toolbar</item>
+        <item name="bottomSheetStyle">@style/BVNotesBottomSheetStyle</item>
+    </style>
+    <style name="BVNotesBottomSheetStyle" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="android:background">@color/bg_card</item>
+        <item name="shapeAppearance">@style/RoundedSheet</item>
+    </style>
+
+    <style name="BVNotesFloatingSheet" parent="Theme.Material3.DayNight.BottomSheetDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:navigationBarColor">@color/bg_toolbar</item>
+        <item name="bottomSheetStyle">@style/BVNotesFloatingSheetStyle</item>
+    </style>
+    <style name="BVNotesFloatingSheetStyle" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+    <style name="RoundedSheet">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeTopRight">16dp</item>
+    </style>
+
+    <!-- Search view -->
+    <style name="BVNotesSearchView" parent="Widget.AppCompat.SearchView">
+        <item name="android:background">@drawable/search_bg</item>
+        <item name="android:editTextColor">@color/text_primary</item>
+        <item name="android:textColorHint">@color/text_tertiary</item>
+    </style>
+
+    <style name="Theme.BVNotes.FullscreenDialog" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/bg_primary</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
+</resources>

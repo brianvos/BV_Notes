@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Backgrounds -->
+    <color name="bg_primary">#D1C4B0</color>      <!-- Slightly darker aged parchment -->
+    <color name="bg_sidebar">#C8BAA6</color>       <!-- Muted oak / dark wood -->
+    <color name="bg_toolbar">#3E2723</color>       <!-- Deep Mahogany/Leather -->
+    <color name="bg_paper">#FDF6E3</color>         <!-- classic parchment paper -->
+    <color name="bg_card">#E9DDCB</color>          <!-- Lighter than primary for neumorphism -->
+
+    <!-- Text -->
+    <color name="text_primary">#1D1210</color>      <!-- Darker mahogany -->
+    <color name="text_secondary">#32261D</color>    <!-- More contrast -->
+    <color name="text_tertiary">#5D4D43</color>     <!-- Much darker for visibility -->
+    <color name="text_on_brown">#FFFFFF</color>     <!-- Pure white for maximum contrast on dark -->
+
+    <!-- Accent -->
+    <color name="accent_brown">#5D4037</color>      <!-- Coffee/Leather accent -->
+    <color name="accent_brown_light">#A1887F</color>
+    <color name="accent_grey">#8D6E63</color>
+
+    <!-- Divider -->
+    <color name="divider">#BCAAA4</color>
+
+    <!-- Tool palette colours -->
+    <color name="ink_black">#1B1B1B</color>
+    <color name="ink_brown">#3E2723</color>
+    <color name="ink_grey">#546E7A</color>
+    <color name="ink_warm">#8D6E63</color>
+    <color name="ink_red">#880E4F</color>          <!-- Crimson -->
+    <color name="ink_blue">#0D47A1</color>         <!-- Ink Blue -->
+    <color name="ink_highlight">#EF6C00</color>
+
+    <!-- Swatches -->
+    <color name="swatch_selected_border">#3E2723</color>
+
+    <!-- Canvas specific (used in NoteCanvasView) -->
+    <color name="canvas_lasso_fill">#445D4037</color>
+    <color name="canvas_template_line">#BCAAA4</color>
+    <color name="canvas_selection_dash">#5D4037</color>
+    <color name="canvas_page_shadow">#33000000</color>
+    <color name="canvas_link_bg">#EFEBE9</color>
+    <color name="canvas_link_border">#BCAAA4</color>
+    <color name="canvas_link_text">#3E2723</color>
+    <color name="canvas_hover">#AA5D4037</color>
+    <!-- Row colors -->
+    <color name="folder_row_selected">#BCAAA4</color>
+    <color name="folder_row_pressed">#A1887F</color>
+
+    <!-- Neumorphic Shadows (Intensified for Dark Academia) -->
+    <color name="neu_sidebar_shadow">#A89B8D</color>
+    <color name="neu_sidebar_highlight">#E8DECF</color>
+    <color name="neu_primary_shadow">#B0A494</color>
+    <color name="neu_primary_highlight">#F5EEE1</color>
+</resources>

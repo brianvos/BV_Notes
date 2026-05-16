@@ -1,0 +1,41 @@
+# Built artifacts
+bin/
+gen/
+out/
+build/
+.gradle/
+.kotlin/
+app/build/
+whisper-lib/build/
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+captures/
+
+# Local configuration
+local.properties
+.DS_Store
+
+# Native build artifacts
+.externalNativeBuild/
+.cxx/
+
+# Log files and heap dumps
+*.log
+*.hprof
+
+# Backup files
+*.patch
+
+# Device specific files
+*.apk
+*.ap_
+*.dex

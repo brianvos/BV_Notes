@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/bg_primary">
+
+    <!-- Left sidebar -->
+    <LinearLayout
+        android:id="@+id/sidebarContainer"
+        android:layout_width="220dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/bg_sidebar"
+        android:paddingTop="24dp">
+
+        <!-- App name -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BV Notes"
+            android:fontFamily="serif"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:textColor="@color/text_primary"
+            android:letterSpacing="0.02"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The Scholar's Suite"
+            android:fontFamily="serif"
+            android:textStyle="italic"
+            android:textSize="11sp"
+            android:textColor="@color/text_tertiary"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Search -->
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginBottom="16dp"
+            app:queryHint="Search…"
+            app:iconifiedByDefault="false"
+            style="@style/BVNotesSearchView"/>
+
+        <LinearLayout
+            android:id="@+id/btnAllNotes"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="20dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/folder_row_bg">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="📔" android:textSize="16sp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="  All Notes" android:textSize="13sp" android:textColor="@color/text_primary" android:fontFamily="serif" android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!-- Section label -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ARCHIVES"
+            android:fontFamily="serif"
+            android:textStyle="bold"
+            android:textSize="10sp"
+            android:letterSpacing="0.15"
+            android:textColor="@color/accent_brown"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Folder list -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFolders"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingVertical="4dp"/>
+
+        <!-- Bottom: current folder label + new folder -->
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="@color/divider" android:layout_marginHorizontal="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp">
+
+            <ImageView
+                android:id="@+id/btnNewFolder"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_folder_add"
+                android:padding="4dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackgroundBorderless"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="New Folder"
+                android:textSize="13sp"
+                android:textColor="@color/text_primary"
+                android:fontFamily="serif"
+                android:textStyle="bold"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+
+        <!-- Files access button -->
+        <LinearLayout
+            android:id="@+id/btnFilesAccess"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🗂" android:textSize="16sp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="  Files" android:textSize="13sp" android:textColor="@color/text_primary" android:fontFamily="serif" android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <!-- Settings access button -->
+        <LinearLayout
+            android:id="@+id/btnSettingsAccess"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⚙️" android:textSize="16sp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="  Settings" android:textSize="13sp" android:textColor="@color/text_primary" android:fontFamily="serif" android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Right: note grid -->
+    <FrameLayout
+        android:id="@+id/noteGridContainer"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <!-- Header -->
+        <LinearLayout
+            android:id="@+id/gridHeader"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp"
+            android:background="@color/bg_toolbar"
+            android:elevation="2dp">
+
+            <ImageButton
+                android:id="@+id/btnToggleSidebar"
+                style="@style/ToolbarIconBtn"
+                android:src="@drawable/ic_menu"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/tvCurrentFolder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="All Notes"
+                android:fontFamily="serif"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/text_on_brown"/>
+
+        </LinearLayout>
+
+        <!-- Note grid -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvNotes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="72dp"
+            android:paddingHorizontal="12dp"
+            android:paddingBottom="80dp"
+            android:clipToPadding="false"/>
+
+        <!-- Empty state -->
+        <LinearLayout
+            android:id="@+id/emptyState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="📝" android:textSize="48sp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="No notes yet" android:textSize="16sp" android:textColor="@color/text_secondary"
+                android:fontFamily="sans-serif-medium" android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <!-- Developing Indicator (Main Page) -->
+        <LinearLayout
+            android:id="@+id/developingIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="96dp"
+            android:layout_marginBottom="36dp"
+            android:visibility="gone"
+            android:background="@drawable/selection_bar_bg"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            android:elevation="4dp">
+            <TextView
+                android:id="@+id/tvDevelopingStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Developing"
+                android:textSize="12sp"
+                android:textColor="@color/text_secondary"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginEnd="8dp"/>
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/developingProgress"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:indeterminate="true"
+                app:indicatorSize="16dp"
+                app:trackThickness="2dp"
+                app:indicatorColor="@color/accent_brown"/>
+            <ImageView
+                android:id="@+id/developingCheck"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_check"
+                app:tint="@color/accent_brown"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <!-- FAB -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabNewNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="24dp"
+            app:srcCompat="@drawable/ic_add"
+            app:backgroundTint="@color/accent_brown"
+            app:tint="@color/bg_primary"
+            app:elevation="4dp"/>
+
+    </FrameLayout>
+
+</LinearLayout>

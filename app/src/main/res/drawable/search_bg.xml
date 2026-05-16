@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Dark top-left shadow for recessed look -->
+    <item>
+        <shape>
+            <solid android:color="@color/neu_sidebar_shadow" />
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+    <!-- Light bottom-right highlight -->
+    <item android:left="2dp" android:top="2dp">
+        <shape>
+            <solid android:color="@color/divider" />
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+</layer-list>

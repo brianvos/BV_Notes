@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Backgrounds -->
+    <color name="bg_primary">#121212</color>
+    <color name="bg_sidebar">#1E1E1E</color>
+    <color name="bg_toolbar">#3D2E1E</color>       <!-- Even Darker Brown for Dark Mode -->
+    <color name="bg_paper">#1A1A1A</color>
+    <color name="bg_card">#2C2C2C</color>
+
+    <!-- Text -->
+    <color name="text_primary">#EAEAEA</color>
+    <color name="text_secondary">#BCB2A9</color>
+    <color name="text_tertiary">#7A7065</color>
+    <color name="text_on_brown">#EAEAEA</color>
+
+    <!-- Accent -->
+    <color name="accent_brown">#D4B483</color>
+    <color name="accent_brown_light">#7A5C3C</color>
+    <color name="accent_grey">#5E5850</color>
+
+    <!-- Divider -->
+    <color name="divider">#333333</color>
+
+    <!-- Tool palette colours -->
+    <color name="ink_black">#FFFFFF</color> <!-- In dark mode, 'black' ink becomes white -->
+    <color name="ink_brown">#D4B483</color>
+    <color name="ink_grey">#BDBDBD</color>
+    <color name="ink_warm">#C4A882</color>
+    <color name="ink_red">#E74C3C</color>
+    <color name="ink_blue">#3498DB</color>
+    <color name="ink_highlight">#7A5C3C</color>
+
+    <!-- Swatches -->
+    <color name="swatch_selected_border">#D4B483</color>
+
+    <!-- Canvas specific (used in NoteCanvasView) -->
+    <color name="canvas_lasso_fill">#44D4B483</color>
+    <color name="canvas_template_line">#33EAEAEA</color>
+    <color name="canvas_selection_dash">#D4B483</color>
+    <color name="canvas_page_shadow">#44000000</color>
+    <color name="canvas_link_bg">#3D3428</color>
+    <color name="canvas_link_border">#7A5C3C</color>
+    <color name="canvas_link_text">#D4B483</color>
+    <color name="canvas_hover">#AAD4B483</color>
+    <!-- Row colors -->
+    <color name="folder_row_selected">#3D3428</color>
+    <color name="folder_row_pressed">#4D4438</color>
+</resources>

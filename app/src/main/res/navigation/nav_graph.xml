@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment android:id="@+id/homeFragment"
+        android:name="com.bv.notes.ui.home.HomeFragment"
+        android:label="Home">
+        <action android:id="@+id/action_home_to_editor"
+            app:destination="@id/noteEditorFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+        <action android:id="@+id/action_home_to_files"
+            app:destination="@id/filesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action android:id="@+id/action_home_to_settings"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment android:id="@+id/noteEditorFragment"
+        android:name="com.bv.notes.ui.editor.NoteEditorFragment"
+        android:label="Editor">
+        <argument android:name="noteId" app:argType="long" android:defaultValue="-1L"/>
+    </fragment>
+
+    <fragment android:id="@+id/filesFragment"
+        android:name="com.bv.notes.ui.files.FilesFragment"
+        android:label="Files"/>
+
+    <fragment android:id="@+id/settingsFragment"
+        android:name="com.bv.notes.ui.settings.SettingsFragment"
+        android:label="Settings"/>
+
+</navigation>

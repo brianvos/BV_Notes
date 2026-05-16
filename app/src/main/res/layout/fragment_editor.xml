@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/editorRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_paper">
+
+    <!-- ── Top toolbar ──────────────────────────────────────────────────────── -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/bg_toolbar"
+        android:elevation="2dp"
+        android:paddingHorizontal="8dp">
+
+        <ImageButton android:id="@+id/btnBack" style="@style/ToolbarIconBtn" android:src="@drawable/ic_arrow_back"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editorTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="8dp"
+            android:hint="Untitled"
+            android:fontFamily="serif"
+            android:textSize="17sp"
+            android:textColor="@color/text_on_brown"
+            android:textColorHint="@color/text_on_brown"
+            android:background="@null"
+            android:inputType="textCapSentences|textNoSuggestions"
+            android:singleLine="true"/>
+
+        <ImageButton android:id="@+id/btnUndo" style="@style/ToolbarIconBtn" android:src="@drawable/ic_undo"/>
+        <ImageButton android:id="@+id/btnRedo" style="@style/ToolbarIconBtn" android:src="@drawable/ic_redo"/>
+        <ImageButton android:id="@+id/btnBookmarks" style="@style/ToolbarIconBtn" android:src="@drawable/ic_menu"/>
+        <ImageButton android:id="@+id/btnRecenter" style="@style/ToolbarIconBtn" android:src="@drawable/ic_home" android:visibility="gone"/>
+        <ImageButton android:id="@+id/btnMore" style="@style/ToolbarIconBtn" android:src="@drawable/ic_more"/>
+
+    </LinearLayout>
+
+    <!-- ── Middle row: tool palette + canvas ───────────────────────────────── -->
+    <LinearLayout
+        android:id="@+id/middleRow"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <!-- Left tool palette (Scrollable for horizontal tablets) -->
+        <ScrollView
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:background="@color/bg_sidebar"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:paddingVertical="12dp">
+
+                <!-- Tools -->
+                <ImageButton android:id="@+id/toolPen" style="@style/ToolPaletteBtn" android:src="@drawable/ic_pen" android:layout_marginTop="0dp"/>
+                <ImageButton android:id="@+id/toolHighlight" style="@style/ToolPaletteBtn" android:src="@drawable/ic_highlight"/>
+                <ImageButton android:id="@+id/toolShapes" style="@style/ToolPaletteBtn" android:src="@drawable/ic_shapes"/>
+                <ImageButton android:id="@+id/toolEraser" style="@style/ToolPaletteBtn" android:src="@drawable/ic_eraser"/>
+                <ImageButton android:id="@+id/toolSelect" style="@style/ToolPaletteBtn" android:src="@drawable/ic_select"/>
+                <ImageButton android:id="@+id/toolLasso" style="@style/ToolPaletteBtn" android:src="@drawable/ic_select" app:tint="@color/accent_brown"/>
+                <ImageButton android:id="@+id/toolText" style="@style/ToolPaletteBtn" android:src="@drawable/ic_textbox"/>
+                <ImageButton android:id="@+id/toolLink" style="@style/ToolPaletteBtn" android:src="@drawable/ic_link"/>
+
+                <View android:layout_width="32dp" android:layout_height="1dp"
+                    android:background="@color/divider" android:layout_marginVertical="8dp"/>
+
+                <LinearLayout
+                    android:id="@+id/inkControls"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:visibility="gone">
+
+                    <!-- Favorite Color Swatches -->
+                    <View android:id="@+id/colorSlot1" android:layout_width="28dp" android:layout_height="28dp"
+                        android:layout_margin="6dp" android:background="@drawable/swatch_black"/>
+                    <View android:id="@+id/colorSlot2" android:layout_width="28dp" android:layout_height="28dp"
+                        android:layout_margin="6dp" android:background="@drawable/swatch_red"/>
+                    <View android:id="@+id/colorSlot3" android:layout_width="28dp" android:layout_height="28dp"
+                        android:layout_margin="6dp" android:background="@drawable/swatch_blue"/>
+
+                    <View android:layout_width="32dp" android:layout_height="1dp"
+                        android:background="@color/divider" android:layout_marginVertical="8dp"/>
+
+                    <!-- Stroke width slider (vertical) -->
+                    <com.google.android.material.slider.Slider
+                        android:id="@+id/strokeSlider"
+                        android:layout_width="160dp"
+                        android:layout_height="48dp"
+                        android:rotation="270"
+                        android:layout_marginTop="60dp"
+                        android:layout_marginBottom="60dp"
+                        android:valueFrom="1"
+                        android:valueTo="40"
+                        android:stepSize="0.5"
+                        android:value="3"
+                        app:thumbRadius="10dp"
+                        app:trackHeight="3dp"
+                        app:thumbColor="@color/accent_brown"
+                        app:trackColorActive="@color/accent_brown"
+                        app:trackColorInactive="@color/divider"
+                        android:contentDescription="Stroke Size Slider"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Dynamic Container for Canvas and Transcript -->
+        <LinearLayout
+            android:id="@+id/canvasTranscriptContainer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <com.bv.notes.ui.editor.NoteCanvasView
+                    android:id="@+id/canvas"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <!-- Lasso Context Menu -->
+                <LinearLayout
+                    android:id="@+id/lassoMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/selection_bar_bg"
+                    android:visibility="gone"
+                    android:elevation="8dp"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="8dp">
+
+                    <ImageButton android:id="@+id/btnLassoCheck"
+                        style="@style/SelectionBarBtn" android:src="@drawable/ic_check" app:tint="@color/accent_brown" android:visibility="gone"/>
+                    <ImageButton android:id="@+id/btnLassoDuplicate"
+                        style="@style/SelectionBarBtn" android:src="@drawable/ic_duplicate"/>
+                    <ImageButton android:id="@+id/btnLassoColor"
+                        style="@style/SelectionBarBtn" android:src="@drawable/ic_pen"/>
+                    <ImageButton android:id="@+id/btnLassoDelete"
+                        style="@style/SelectionBarBtn" android:src="@drawable/ic_delete"/>
+
+                </LinearLayout>
+
+                <!-- Inline Text Editor (Surgical match to canvas text) -->
+                <EditText
+                    android:id="@+id/inlineEditor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:background="@null"
+                    android:padding="0dp"
+                    android:minWidth="40dp"
+                    android:minHeight="24dp"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine|textNoSuggestions"
+                    android:fontFamily="serif"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_primary"
+                    android:elevation="0dp"
+                    android:autofillHints=""
+                    android:hint="Type here..."/>
+
+                <!-- Selection bar (appears when element selected) -->
+                <LinearLayout
+                    android:id="@+id/selectionBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/selection_bar_bg"
+                    android:layout_gravity="top|center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"
+                    android:alpha="0"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="4dp"
+                    android:elevation="6dp">
+
+                    <ImageButton android:id="@+id/btnSelectionCheck"
+                        style="@style/SelectionBarBtn" android:src="@drawable/ic_check" app:tint="@color/accent_brown" android:visibility="gone"/>
+                    <ImageButton android:id="@+id/btnDeleteElement"
+                        style="@style/SelectionBarBtn" android:src="@drawable/ic_delete"/>
+                    <ImageButton android:id="@+id/btnEditElement"
+                        style="@style/SelectionBarBtn" android:src="@drawable/ic_pen" android:visibility="gone"/>
+                    <ImageButton android:id="@+id/btnLockElement"
+                        style="@style/SelectionBarBtn" android:src="@drawable/ic_lock"/>
+                    <ImageButton android:id="@+id/btnDuplicateElement"
+                        style="@style/SelectionBarBtn" android:src="@drawable/ic_duplicate"/>
+
+                </LinearLayout>
+
+                <!-- Recording pulse indicator -->
+                <View
+                    android:id="@+id/recordingPulse"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_gravity="top|end"
+                    android:layout_margin="12dp"
+                    android:background="@drawable/swatch_red"
+                    android:visibility="gone"/>
+
+                <!-- Lecture Miniplayer (Video) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/lectureCard"
+                    android:layout_width="280dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="top|end"
+                    android:layout_margin="16dp"
+                    android:visibility="gone"
+                    app:cardElevation="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardBackgroundColor="#000000"
+                    app:strokeColor="@color/accent_brown"
+                    app:strokeWidth="1dp">
+
+                    <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent">
+
+                        <VideoView
+                            android:id="@+id/lectureVideoView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"/>
+
+                        <!-- Video Controls Overlay -->
+                        <LinearLayout
+                            android:id="@+id/lectureControls"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:background="#66000000"
+                            android:gravity="bottom"
+                            android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:gravity="center">
+
+                                <ImageButton android:id="@+id/btnLectureBack10"
+                                    android:layout_width="40dp" android:layout_height="40dp"
+                                    android:src="@drawable/ic_skip_back" android:background="?attr/selectableItemBackgroundBorderless"
+                                    app:tint="#FFFFFF"/>
+
+                                <ImageButton android:id="@+id/btnLecturePlayPause"
+                                    android:layout_width="52dp" android:layout_height="52dp"
+                                    android:layout_marginHorizontal="16dp"
+                                    android:src="@drawable/ic_play" android:background="?attr/selectableItemBackgroundBorderless"
+                                    app:tint="#FFFFFF" android:scaleType="fitCenter"/>
+
+                                <ImageButton android:id="@+id/btnLectureForward10"
+                                    android:layout_width="40dp" android:layout_height="40dp"
+                                    android:src="@drawable/ic_skip_forward" android:background="?attr/selectableItemBackgroundBorderless"
+                                    app:tint="#FFFFFF"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:paddingHorizontal="8dp"
+                                android:layout_marginBottom="4dp">
+
+                                <TextView android:id="@+id/tvLectureTime"
+                                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="00:00" android:textColor="#FFFFFF" android:textSize="11sp"/>
+
+                                <SeekBar android:id="@+id/lectureSeekBar"
+                                    android:layout_width="0dp" android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:max="100"
+                                    android:progress="0"
+                                    android:thumbTint="#FFFFFF"
+                                    android:progressTint="@color/accent_brown"/>
+
+                                <TextView android:id="@+id/tvLectureDuration"
+                                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="00:00" android:textColor="#FFFFFF" android:textSize="11sp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvLectureStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="REC"
+                            android:textColor="#FF0000"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_margin="8dp"
+                            android:visibility="gone"/>
+
+                        <ImageButton
+                            android:id="@+id/btnCloseLecture"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="top|end"
+                            android:src="@drawable/ic_delete"
+                            android:background="#44000000"
+                            app:tint="#FFFFFF"
+                            android:padding="6dp"/>
+
+                    </FrameLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </FrameLayout>
+
+            <!-- Transcript Panel (Positioned dynamically by code) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/transcriptCard"
+                android:layout_width="240dp"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="0dp"
+                app:cardBackgroundColor="@color/bg_sidebar"
+                app:strokeColor="@color/divider"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Transcript"
+                            android:textSize="12sp"
+                            android:textAllCaps="true"
+                            android:letterSpacing="0.1"
+                            android:textColor="@color/accent_brown"
+                            android:textStyle="bold"
+                            android:fontFamily="sans-serif-medium"/>
+                        <ImageButton
+                            android:id="@+id/btnCloseTranscript"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_close"
+                            android:background="@null"
+                            app:tint="@color/text_tertiary"
+                            android:padding="4dp"
+                            android:scaleType="fitCenter"/>
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.SearchView
+                        android:id="@+id/transcriptSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:layout_marginBottom="8dp"
+                        app:queryHint="Search…"
+                        app:iconifiedByDefault="false"
+                        style="@style/BVNotesSearchView"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/transcriptList"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:clipToPadding="false"
+                        android:paddingBottom="24dp"/>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- ── Bottom bar ───────────────────────────────────────────────────────── -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@color/bg_toolbar"
+            android:paddingHorizontal="16dp">
+
+            <ImageButton android:id="@+id/btnInsert" style="@style/BottomBarBtn" android:src="@drawable/ic_add" app:tint="@color/text_on_brown"/>
+
+            <LinearLayout
+                android:id="@+id/recordingControls"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+                <ImageButton android:id="@+id/btnStopRecording" style="@style/ToolbarIconBtn" android:src="@drawable/ic_stop" android:layout_marginHorizontal="4dp" android:background="@null" app:tint="@color/text_on_brown"/>
+                <ImageButton android:id="@+id/btnPauseRecording" style="@style/ToolbarIconBtn" android:src="@drawable/ic_pause" android:layout_marginHorizontal="4dp" android:background="@null" app:tint="@color/text_on_brown"/>
+            </LinearLayout>
+
+            <ImageButton android:id="@+id/btnPlayLecture" style="@style/BottomBarBtn" android:src="@drawable/ic_play" android:layout_marginHorizontal="8dp" android:alpha="0.8" app:tint="@color/text_on_brown"/>
+
+            <ImageButton android:id="@+id/btnShowTranscript" style="@style/ToolbarIconBtn" android:src="@drawable/ic_textbox" android:layout_marginHorizontal="8dp" android:background="@null" android:alpha="0.8" app:tint="@color/text_on_brown"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <!-- Developing Indicator -->
+            <LinearLayout
+                android:id="@+id/developingIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                android:layout_marginEnd="8dp">
+                <TextView
+                    android:id="@+id/tvDevelopingStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Developing"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_on_brown"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginEnd="6dp"/>
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/developingProgress"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:indeterminate="true"
+                    app:indicatorSize="16dp"
+                    app:trackThickness="2dp"
+                    app:indicatorColor="@color/text_on_brown"/>
+                <ImageView
+                    android:id="@+id/developingCheck"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_check"
+                    app:tint="@color/text_on_brown"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <ImageButton android:id="@+id/btnPrevPage" style="@style/ToolbarIconBtn" android:src="@drawable/ic_arrow_back" android:visibility="gone" app:tint="@color/text_on_brown"/>
+            <TextView android:id="@+id/tvPageIndicator" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1 / 1" android:textColor="@color/text_on_brown" android:textSize="13sp" android:textStyle="bold" android:fontFamily="serif" android:layout_marginHorizontal="8dp" android:visibility="gone"/>
+            <ImageButton android:id="@+id/btnNextPage" style="@style/ToolbarIconBtn" android:src="@drawable/ic_redo" android:rotation="90" android:visibility="gone" app:tint="@color/text_on_brown"/>
+
+            <ImageButton android:id="@+id/btnDeletePage" style="@style/BottomBarBtn" android:src="@drawable/ic_delete" android:layout_marginStart="8dp" android:visibility="gone" app:tint="@color/text_on_brown"/>
+            <ImageButton android:id="@+id/btnAddPage" style="@style/BottomBarBtn" android:src="@drawable/ic_add" android:layout_marginStart="8dp" app:tint="@color/text_on_brown"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
